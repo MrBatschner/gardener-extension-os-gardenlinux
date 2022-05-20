@@ -10,3 +10,9 @@ FROM alpine:3.15.4 AS gardener-extension-os-gardenlinux
 
 COPY --from=builder /go/bin/gardener-extension-os-gardenlinux /gardener-extension-os-gardenlinux
 ENTRYPOINT ["/gardener-extension-os-gardenlinux"]
+
+############# gardener-extension-admission-os-gardenlinux
+FROM alpine:3.15.4 AS gardener-extension-admission-os-gardenlinux
+
+COPY --from=builder /go/bin/gardener-extension-admission-os-gardenlinux /gardener-extension-admission-os-gardenlinux
+ENTRYPOINT ["/gardener-extension-admission-os-gardenlinux"]

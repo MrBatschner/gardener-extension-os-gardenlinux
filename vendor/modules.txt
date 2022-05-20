@@ -20,6 +20,8 @@ github.com/bronze1man/yaml2json
 github.com/bronze1man/yaml2json/y2jLib
 # github.com/cespare/xxhash/v2 v2.1.1
 github.com/cespare/xxhash/v2
+# github.com/coreos/go-systemd/v22 v22.3.2
+github.com/coreos/go-systemd/v22/unit
 # github.com/cyphar/filepath-securejoin v0.2.2
 github.com/cyphar/filepath-securejoin
 # github.com/davecgh/go-spew v1.1.1
@@ -54,6 +56,8 @@ github.com/gardener/gardener/extensions/pkg/controller/operatingsystemconfig/osc
 github.com/gardener/gardener/extensions/pkg/controller/operatingsystemconfig/oscommon/template
 github.com/gardener/gardener/extensions/pkg/predicate
 github.com/gardener/gardener/extensions/pkg/util
+github.com/gardener/gardener/extensions/pkg/webhook
+github.com/gardener/gardener/extensions/pkg/webhook/cmd
 github.com/gardener/gardener/hack
 github.com/gardener/gardener/hack/.ci
 github.com/gardener/gardener/hack/api-reference/template
@@ -86,6 +90,7 @@ github.com/gardener/gardener/pkg/chartrenderer
 github.com/gardener/gardener/pkg/client/kubernetes
 github.com/gardener/gardener/pkg/client/kubernetes/cache
 github.com/gardener/gardener/pkg/controllerutils
+github.com/gardener/gardener/pkg/controllerutils/predicate
 github.com/gardener/gardener/pkg/controllerutils/reconciler
 github.com/gardener/gardener/pkg/extensions
 github.com/gardener/gardener/pkg/gardenlet/apis/config
