@@ -19,6 +19,7 @@ import (
 	_ "embed"
 	"fmt"
 	"path/filepath"
+	"strings"
 
 	"github.com/gardener/gardener/extensions/pkg/controller/operatingsystemconfig"
 	oscommonactuator "github.com/gardener/gardener/extensions/pkg/controller/operatingsystemconfig/oscommon/actuator"
@@ -138,12 +139,14 @@ MIME-Version: 1.0
 Content-Type: text/x-vsmp; section=vsmp`
 
 	if config != nil && config.SystemMemory != nil {
+		systemmemory := strings.Split(*config.SystemMemory, ";")[0]
 		out += fmt.Sprintf(`
-system_memory=%s`, *config.SystemMemory)
+system_memory=%s`, systemmemory)
 	}
 	if config != nil && config.MemoryTopology != nil {
+		memoryTopology := strings.Split(*config.MemoryTopology, ";")[0]
 		out += fmt.Sprintf(`
-mem_topology=%s`, *config.MemoryTopology)
+mem_topology=%s`, memoryTopology)
 	}
 
 	out += `

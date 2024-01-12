@@ -16,6 +16,7 @@ package memoryone
 
 import (
 	"fmt"
+	"strings"
 
 	extensionsv1alpha1 "github.com/gardener/gardener/pkg/apis/extensions/v1alpha1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -54,11 +55,13 @@ func MemoryOneValues(osc *extensionsv1alpha1.OperatingSystemConfig, values map[s
 		}
 
 		if config.MemoryTopology != nil {
-			values["MemoryOneMemoryTopology"] = *config.MemoryTopology
+			memoryTopology := strings.Split(*config.MemoryTopology, ";")[0]
+			values["MemoryOneMemoryTopology"] = memoryTopology
 		}
 
 		if config.SystemMemory != nil {
-			values["MemoryOneSystemMemory"] = *config.SystemMemory
+			systemmemory := strings.Split(*config.SystemMemory, ";")[0]
+			values["MemoryOneSystemMemory"] = systemmemory
 		}
 	}
 

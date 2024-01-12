@@ -167,6 +167,31 @@ Content-Type: text/x-shellscript
 						Expect(extensionUnits).To(BeEmpty())
 						Expect(extensionFiles).To(BeEmpty())
 					})
+
+					It("should sanitze and not allow for concatenating memoryone parameters", func() {
+						osc.Spec.ProviderConfig = &runtime.RawExtension{Raw: []byte(`apiVersion: memoryone-gardenlinux.os.extensions.gardener.cloud/v1alpha1
+kind: OperatingSystemConfiguration
+memoryTopology: "2;additionalKeyToSanitize=foo"
+systemMemory: "6x;additionalKeyToSanitize=bar"`)}
+						userData, command, unitNames, fileNames, extensionUnits, extensionFiles, err := actuator.Reconcile(ctx, log, osc)
+						Expect(err).NotTo(HaveOccurred())
+
+						Expect(string(userData)).To(Equal(`Content-Type: multipart/mixed; boundary="==BOUNDARY=="
+MIME-Version: 1.0
+--==BOUNDARY==
+Content-Type: text/x-vsmp; section=vsmp
+system_memory=6x
+mem_topology=2
+--==BOUNDARY==
+Content-Type: text/x-shellscript
+` + expectedUserData + `
+--==BOUNDARY==`))
+						Expect(command).To(BeNil())
+						Expect(unitNames).To(BeEmpty())
+						Expect(fileNames).To(BeEmpty())
+						Expect(extensionUnits).To(BeEmpty())
+						Expect(extensionFiles).To(BeEmpty())
+					})
 				})
 			})
 		})
